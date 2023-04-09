@@ -3,3 +3,7 @@ export * from "./NavBar";
 export * from "./CardProducto";
 export * from "./Footer";
 export * from "./CartButton";
+export * from "./CrudProducto";
+export * from "./FormAddProducto";
+export * from "./FormDeleteProducto";
+export * from "./FormEditProducto";

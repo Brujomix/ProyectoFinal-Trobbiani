@@ -1,14 +1,11 @@
-.contProductos{
+.contCrudProducto{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .Productos{
+    .CrudProducto{
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
         gap: 20px;
-        padding: 30px;
     }
 }

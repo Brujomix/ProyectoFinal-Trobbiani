@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CardProducto } from '../components/CardProducto'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import {Loader} from "../pages"
+import { CrudProducto } from '../components'
 
 export const Productos = () => {
 
@@ -28,6 +29,7 @@ export const Productos = () => {
 
   return loading? <Loader/> : (
     <div className='contProductos'>
+        <CrudProducto/>
       <div className='Productos'>
         {
           data.map((producto) =>
