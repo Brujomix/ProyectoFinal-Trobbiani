@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* Styles Boostrap */
+@import "~bootstrap/scss/bootstrap";
+
+/* Components Styles */
+@import "../styles/_components/Header";
+@import "../styles/_components/NavBar";
+@import "../styles/_components/Footer";
+
+/* Pages Styleds */
+@import "../styles/_pages/MainLayout";
+@import "../styles/_pages/Home";
+@import "../styles/_pages/Loader";
+@import "../styles/_pages/Cart";
+@import "../styles/_pages/Categorias";
+@import "../styles/_pages/Productos";

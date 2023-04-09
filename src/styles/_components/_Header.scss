@@ -1,0 +1,24 @@
+.contHeader{
+    display: flex;
+    padding: 10px;
+    .Header{
+        width: 100vw;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .contThemeCart{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            .CartCount{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+            }
+        }
+    }
+
+}

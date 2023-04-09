@@ -1,0 +1,10 @@
+.contCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .Cart{
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+}

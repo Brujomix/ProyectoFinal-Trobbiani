@@ -1,10 +1,14 @@
-
+import { MainLayout } from "./main/MainLayout";
+import { MainRoutes } from "./routes";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   return (
-    <div className="App">
-      Learn React
-    </div>
+    <ThemeProvider>
+      <MainLayout>
+        <MainRoutes />
+      </MainLayout>
+    </ThemeProvider>
   );
 }
 

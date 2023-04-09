@@ -1,0 +1,9 @@
+.contCategorias{
+    display: flex;
+    justify-content: center;
+    .Categorias{
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+}

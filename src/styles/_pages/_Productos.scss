@@ -1,0 +1,9 @@
+.contProductos{
+    display: flex;
+    justify-content: center;
+    .Productos{
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+}
