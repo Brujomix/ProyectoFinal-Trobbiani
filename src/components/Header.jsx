@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Button, InputGroup } from 'react-bootstrap'
 import { ThemeContext } from '../context/ThemeContext'
+import {getStorage, ref, getDownloadURL} from "firebase/storage"
 
 const Count = () =>{
+  
   return(
     <>
       <InputGroup aria-readonly>0</InputGroup>
@@ -14,8 +16,18 @@ const Count = () =>{
 }
 
 export const Header = () => {
+  const [img,setImg] = useState("imagen Logo")
 
   const {isDarkMode, setIsDarkMode} = useContext(ThemeContext);
+
+  useEffect(()=>{
+    const dbS = getStorage();
+    getDownloadURL(ref(dbS,"extrasImgs/DeWEB-logo-White.png"))
+    .then((res)=>{
+      setImg(res);
+    })
+  },[]);
+  console.log(img)
 
   function HandleEventTheme (){
     setIsDarkMode(!isDarkMode);
@@ -25,7 +37,9 @@ export const Header = () => {
     <div className='contHeader'>
       <div className='Header'>
         <Link to={"/"}>
-          <h1>Home</h1>
+          <img 
+          src={img} 
+          alt="Logo de la Empresa" />
         </Link>
         <div className='contThemeCart'>
           <div className='CartCount'>
