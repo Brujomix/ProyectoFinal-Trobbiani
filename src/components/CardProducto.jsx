@@ -19,7 +19,6 @@ export const CardProducto = ({producto}) => {
                         <ListGroup.Item>Categoria: {producto.categoria}</ListGroup.Item>
                         <ListGroup.Item>$ {producto.precio}</ListGroup.Item>
                         <ListGroup.Item>Stock: {producto.stock}</ListGroup.Item>
-                        <ListGroup.Item>id: {producto.id}</ListGroup.Item>
                     </ListGroup>
                     <Card.Body>
                         <Link to={`/producto/${producto.id}`}>Ver Detalles</Link>                      

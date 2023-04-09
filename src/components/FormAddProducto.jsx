@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { Button } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
 import {getFirestore, collection, addDoc} from "firebase/firestore"
@@ -26,9 +26,13 @@ export const FormAddProducto = () => {
     const getProductos = collection(deF, "productos") 
     addDoc(getProductos, newProducto)
     .then(({id})=>{
-      console.log(id);
+      console.log(id);    
+    }).catch(()=>{
+      console.log("no pudimos agregar tu producto")
     })
-
+    .then(()=>{
+      setShow(false)
+    })
   }
 
   function handleEventUpload(){
