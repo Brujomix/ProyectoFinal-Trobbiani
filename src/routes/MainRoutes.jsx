@@ -12,7 +12,7 @@ export const MainRoutes = () => {
             <Route exact path='/' element={<Home/>}/>           
             <Route exact path='/productos' element={<Productos/>}/>           
             <Route exact path='/producto/:productoId' element={<ProductoDetalle/>}/>           
-            <Route exact path='/categoria/:id' element={<Categorias/>}/>                    
+            <Route exact path='/categoria/:categoriaId' element={<Categorias/>}/>                    
             <Route exact path='/cart' element={<Cart/>}/>           
         </Routes>
         <Footer/>

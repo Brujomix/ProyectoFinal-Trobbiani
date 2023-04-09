@@ -1,7 +1,11 @@
 .contCartButton{
     display: flex;
     flex-direction: column;
+    gap: 20px;
     .CartButton{
-        
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
     }
 }

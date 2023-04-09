@@ -22,7 +22,6 @@ export const Productos = () => {
       console.log(err);
     })
     .then(()=>{
-      console.log(data);
       setLoading(false);
     })
   }, []);
