@@ -27,8 +27,7 @@ export const Header = () => {
       setImg(res);
     })
   },[]);
-  console.log(img)
-
+  
   function HandleEventTheme (){
     setIsDarkMode(!isDarkMode);
   }

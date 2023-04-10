@@ -1,11 +1,14 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
-import {getFirestore, collection, addDoc} from "firebase/firestore"
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+//import { v4 } from "uuid"
 
 export const FormAddProducto = () => {
-
+  
   const [show, setShow] = useState(false);
+  const [img, setImg] = useState("Imagen Prodcuto");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,29 +17,25 @@ export const FormAddProducto = () => {
     e.preventDefault();
 
     const newProducto = {
-      categoria : `${e.target.formBasicCategoria.value}`,
+      categoria: `${e.target.formBasicCategoria.value}`,
       descripcion: `${e.target.formBasicDescripcion.value}`,
       imagen: "url img",
       nombre: `${e.target.formBasicNombre.value}`,
       precio: parseInt(e.target.formBasicPrecio.value),
-      stock : parseInt(e.target.formBasicStock.value)     
+      stock: parseInt(e.target.formBasicStock.value)
     }
-    console.log(newProducto); 
+    console.log(newProducto);
     const deF = getFirestore();
-    const getProductos = collection(deF, "productos") 
+    const getProductos = collection(deF, "productos")
     addDoc(getProductos, newProducto)
-    .then(({id})=>{
-      console.log(id);    
-    }).catch(()=>{
-      console.log("no pudimos agregar tu producto")
-    })
-    .then(()=>{
-      setShow(false)
-    })
+      .then(({ id }) => {
+        console.log(id);
+      }).catch(() => {
+        console.log("no pudimos agregar tu producto")
+      });   
   }
-
-  function handleEventUpload(){
-    console.log("subindo imagen")
+  function handleEventGetUrl() {
+      console.log("sube la imgagen pero falta obteenrla para el pruducto")
   }
 
   return (
@@ -54,16 +53,31 @@ export const FormAddProducto = () => {
             <Form onSubmit={handleEventSubmit}>
               <Form.Group className="mb-3" controlId="formBasicImagen">
                 <Form.Label></Form.Label>
-                <input type='file'
-                 // onChange={(e) => setFile(e.target.files[0])}
+                <input required type='file'
+                  onChange={(e) => {
+                    console.log(e)
+                    const name = (e.target.files[0].name)
+
+                    const dbS = getStorage();
+                    const uplaoadImg = ref(dbS, `/productosImgs/${e.target.files[0].name}`)
+                    uploadBytes(uplaoadImg, name)
+                      .then((res) => {
+                        console.log(res);
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      })
+                  }}
+                  src={img}
+                  alt='Imagen Producto'
                 />
-                //<Button onClick={handleEventUpload}>Unpload</Button>
+                <Button onClick={handleEventGetUrl}>Upload</Button>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicNombre">
                 <Form.Control required type="text" placeholder="Nombre" />
               </Form.Group>
-              
+
               <Form.Group className="mb-3" controlId="formBasicDescripcion">
                 <Form.Control as="textarea" required rows={3} placeholder="Descripcion" />
               </Form.Group>
@@ -93,15 +107,15 @@ export const FormAddProducto = () => {
             </Form>
           </>
         </Modal.Body>
-          <div className='p-2'>
-            <b>Instrucciones:</b>
-            <ul>
-              <li>Todos los campos son requeridos</li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>     
+        <div className='p-2'>
+          <b>Instrucciones:</b>
+          <ul>
+            <li>Todos los campos son requeridos</li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
       </Modal>
     </>
   )
