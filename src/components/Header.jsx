@@ -25,6 +25,7 @@ export const Header = () => {
     getDownloadURL(ref(dbS,"extrasImgs/DeWEB-logo-White.png"))
     .then((res)=>{
       setImg(res);
+      
     })
   },[]);
   

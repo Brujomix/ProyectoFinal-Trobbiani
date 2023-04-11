@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytes, getMetadata } from "firebase/storage";
 //import { v4 } from "uuid"
 
 export const FormAddProducto = () => {
   
   const [show, setShow] = useState(false);
-  const [img, setImg] = useState("Imagen Prodcuto");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -34,8 +33,17 @@ export const FormAddProducto = () => {
         console.log("no pudimos agregar tu producto")
       });   
   }
+
+  const [img, setImg] = useState("imagen")
+  const [urlImg, setUrlImg] = useState("")
+
   function handleEventGetUrl() {
-      console.log("sube la imgagen pero falta obteenrla para el pruducto")
+    const dbS = getStorage();
+    getDownloadURL(ref(dbS,`${img}`))
+    .then((res)=>{
+      setUrlImg(`${res}`);
+      console.log(urlImg)   
+    })
   }
 
   return (
@@ -62,13 +70,13 @@ export const FormAddProducto = () => {
                     const uplaoadImg = ref(dbS, `/productosImgs/${e.target.files[0].name}`)
                     uploadBytes(uplaoadImg, name)
                       .then((res) => {
-                        console.log(res);
+                        setImg(res.metadata.fullPath);
                       })
                       .catch((err) => {
                         console.log(err);
                       })
                   }}
-                  src={img}
+                  src={urlImg}
                   alt='Imagen Producto'
                 />
                 <Button onClick={handleEventGetUrl}>Upload</Button>
