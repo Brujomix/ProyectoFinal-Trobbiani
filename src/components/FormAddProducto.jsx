@@ -6,7 +6,7 @@ import { getStorage, ref, getDownloadURL, uploadBytes, getMetadata } from "fireb
 //import { v4 } from "uuid"
 
 export const FormAddProducto = () => {
-  
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -18,7 +18,7 @@ export const FormAddProducto = () => {
     const newProducto = {
       categoria: `${e.target.formBasicCategoria.value}`,
       descripcion: `${e.target.formBasicDescripcion.value}`,
-      imagen: "url img",
+      imagen: `${urlImg}`,
       nombre: `${e.target.formBasicNombre.value}`,
       precio: parseInt(e.target.formBasicPrecio.value),
       stock: parseInt(e.target.formBasicStock.value)
@@ -31,19 +31,23 @@ export const FormAddProducto = () => {
         console.log(id);
       }).catch(() => {
         console.log("no pudimos agregar tu producto")
-      });   
+      })
+      .then(() => {
+        setShow(false);
+      })
   }
 
-  const [img, setImg] = useState("imagen")
+  const [pathImg, setPathImg] = useState("imagen")
   const [urlImg, setUrlImg] = useState("")
 
   function handleEventGetUrl() {
     const dbS = getStorage();
-    getDownloadURL(ref(dbS,`${img}`))
-    .then((res)=>{
-      setUrlImg(`${res}`);
-      console.log(urlImg)   
-    })
+    getDownloadURL(ref(dbS, `${pathImg}`))
+      .then((res) => {
+        const urlConvertida = `"${res}"`;
+        setUrlImg(urlConvertida);
+        console.log(urlConvertida)
+      }).catch((err) => console.log(err));
   }
 
   return (
@@ -60,25 +64,33 @@ export const FormAddProducto = () => {
           <>
             <Form onSubmit={handleEventSubmit}>
               <Form.Group className="mb-3" controlId="formBasicImagen">
-                <Form.Label></Form.Label>
-                <input required type='file'
-                  onChange={(e) => {
-                    console.log(e)
-                    const name = (e.target.files[0].name)
+                <Form.Label className='uploadImagen'>Upload Imagen</Form.Label>
+                <div>
+                  <input required type='file'
+                    onChange={(e) => {
+                      console.log(e)
+                      const name = (e.target.files[0].name)
 
-                    const dbS = getStorage();
-                    const uplaoadImg = ref(dbS, `/productosImgs/${e.target.files[0].name}`)
-                    uploadBytes(uplaoadImg, name)
-                      .then((res) => {
-                        setImg(res.metadata.fullPath);
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      })
-                  }}
-                  src={urlImg}
-                  alt='Imagen Producto'
-                />
+                      const dbS = getStorage();
+                      const uplaoadImg = ref(dbS, `/productosImgs/${name}`)
+                      uploadBytes(uplaoadImg, name)
+                        .then((res) => {
+                          console.log(res)
+                          setPathImg(res.metadata.fullPath);
+                          console.log(res)
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        })
+                    }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src={urlImg}
+                    alt='Vista Previa Imagen'
+                  />
+                </div>
                 <Button onClick={handleEventGetUrl}>Upload</Button>
               </Form.Group>
 
