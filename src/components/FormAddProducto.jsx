@@ -44,9 +44,8 @@ export const FormAddProducto = () => {
     const dbS = getStorage();
     getDownloadURL(ref(dbS, `${pathImg}`))
       .then((res) => {
-        const urlConvertida = `"${res}"`;
-        setUrlImg(urlConvertida);
-        console.log(urlConvertida)
+        setUrlImg(`${res}`);
+        console.log(res);
       }).catch((err) => console.log(err));
   }
 
