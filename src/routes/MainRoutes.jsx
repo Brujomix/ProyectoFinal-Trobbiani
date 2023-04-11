@@ -4,6 +4,9 @@ import {Footer, Header,NavBar} from "../components"
 import {Categorias, Home, Productos, Cart, ProductoDetalle} from "../pages"
 
 export const MainRoutes = () => {
+
+
+
   return (
     <BrowserRouter>
         <Header/>
@@ -13,7 +16,7 @@ export const MainRoutes = () => {
             <Route exact path='/productos' element={<Productos/>}/>           
             <Route exact path='/producto/:productoId' element={<ProductoDetalle/>}/>           
             <Route exact path='/categoria/:categoriaId' element={<Categorias/>}/>                    
-            <Route exact path='/cart' element={<Cart/>}/>           
+            <Route exact path='/cart' element={<Cart/>}/>                     
         </Routes>
         <Footer/>
     </BrowserRouter>

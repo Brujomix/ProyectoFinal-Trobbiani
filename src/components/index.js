@@ -7,3 +7,4 @@ export * from "./CrudProducto";
 export * from "./FormAddProducto";
 export * from "./FormDeleteProducto";
 export * from "./FormEditProducto";
+export * from "./Checkout";
