@@ -24,7 +24,7 @@ export const FormAddProducto = () => {
     }
     console.log(newProducto);
 
-    /* const deF = getFirestore();
+    const deF = getFirestore();
     const getProductos = collection(deF, "productos")
     addDoc(getProductos, newProducto)
       .then(({ id }) => {
@@ -34,7 +34,7 @@ export const FormAddProducto = () => {
       })
       .then(() => {
         setShow(false);
-      }) */
+      })
   }
 
   const [pathImg, setPathImg] = useState("imagen")

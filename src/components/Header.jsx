@@ -9,11 +9,12 @@ import { CartContext } from '../context/CartContext'
 
 const Count = () =>{
 
-  const{productCount} = useContext(CartContext)
+  const{productCount} = useContext(CartContext);
 
   return(
     <>
-      <InputGroup aria-readonly>{productCount.qty}</InputGroup>
+     <InputGroup aria-readonly>{productCount.qty}</InputGroup>
+       
     </>
   )
 }
