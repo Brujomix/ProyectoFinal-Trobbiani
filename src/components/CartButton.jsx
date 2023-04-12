@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, ButtonGroup } from 'react-bootstrap'
 import { CartContext } from '../context/CartContext';
 import { useParams } from 'react-router-dom';
@@ -9,23 +9,16 @@ export const CartButton = () => {
     const { productCount, setProductCount } = useContext(CartContext);
     const { productoId } = useParams();
 
-    function handleEventSuma() {
-        setCount(count + 1)
-    }
-
-    function handleEventResta() {
-        setCount(count - 1)
-    }
+    const handleEventSuma = () => setCount(count + 1);
+    const handleEventResta = () => setCount(count - 1);
 
     function handleEventAgregar() {
-
-        console.log("agregando al carrito")
-    
-        /* const existingProducto = productCount.productos.find((e) => e.productoId === productoId);
-        console.log(existingProducto)
+        const existingProducto = productCount.productos.find((e) => e.productoId === productoId);
         if (existingProducto) {
+            console.log(existingProducto)
             existingProducto.qty += count;
         } else {
+            console.log("Agregarndo producto")
             const newProduct = {
                 productoId,
                 qty: count
@@ -34,7 +27,7 @@ export const CartButton = () => {
                 qty: prevState.qty + count,
                 productos: [...prevState.productos, newProduct]
             }))
-        } */
+        }
     }
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import {Footer, Header,NavBar} from "../components"
+import {Checkout, Footer, Header,NavBar} from "../components"
 import {Categorias, Home, Productos, Cart, ProductoDetalle} from "../pages"
 
 export const MainRoutes = () => {
@@ -17,6 +17,7 @@ export const MainRoutes = () => {
             <Route exact path='/producto/:productoId' element={<ProductoDetalle/>}/>           
             <Route exact path='/categoria/:categoriaId' element={<Categorias/>}/>                    
             <Route exact path='/cart' element={<Cart/>}/>                     
+            <Route exact path='/checkout' element={<Checkout/>}/>                     
         </Routes>
         <Footer/>
     </BrowserRouter>

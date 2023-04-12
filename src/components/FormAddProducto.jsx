@@ -38,13 +38,13 @@ export const FormAddProducto = () => {
   }
 
   const [pathImg, setPathImg] = useState("imagen")
-  const [urlImg, setUrlImg] = useState("")
+  const [urlImg, setUrlImg] = useState("Imagen Producto")
 
   function handleEventGetUrl() {
     const dbS = getStorage();
     getDownloadURL(ref(dbS, `${pathImg}`))
       .then((res) => {
-        setUrlImg(`${res}`);
+        setUrlImg(res);
         console.log(res);
       }).catch((err) => console.log(err));
   }
