@@ -1,6 +1,6 @@
 .contCart{
     display: grid;
-    grid-template-columns: 1fr .1fr;
+    grid-template-columns: 1fr .5fr;
     grid-template-rows: auto;
 
     justify-content: center;
@@ -8,7 +8,12 @@
     .Cart{
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         gap: 10px;
         padding: 20px;
+    }
+    .CheckoutButtonTotal{
+        text-align: center;
     }
 }

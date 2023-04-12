@@ -42,7 +42,7 @@ export const Cart = () => {
     });
     
     const total = productData
-    .map((e)=> e.precio * qtyByProductoId(prodctsIdBD))
+    .map((e)=> e.precio * qtyByProductoId(e.id))
     .reduce((acc, currentValue)=> acc + currentValue, 0);
     
     console.log(total)
@@ -61,8 +61,9 @@ export const Cart = () => {
           ))
         }
         </div>
-        <div className='CheckoutButton'>
+        <div className='CheckoutButtonTotal'>
           <Checkout/>
+          <b>Total a Abonar $ {total}</b>        
         </div>
     </div>
   )
