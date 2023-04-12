@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
 
 
-export const CartDetalles = ({ cartProducto}) => {
+export const CartDetalles = ({ cartProducto, qty}) => {
     return (
         <div className='contCartDetalles'>
             <div className='CartDetalles'>
@@ -17,7 +17,7 @@ export const CartDetalles = ({ cartProducto}) => {
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Stock: {cartProducto.stock}</ListGroup.Item>
                         <ListGroup.Item>$ {cartProducto.precio}</ListGroup.Item>
-                        {/* <ListGroup.Item>Cantidad: {qty.qty}</ListGroup.Item> */}
+                        <ListGroup.Item>Cantidad: {qty.qty}</ListGroup.Item>
                     </ListGroup>
                 </Card>
             </div>

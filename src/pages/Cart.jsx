@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { CartDetalles } from "../components"
+import { CartDetalles, Checkout } from "../components"
 import { CartContext } from '../context/CartContext'
 import {Loader} from "../pages"
 import { collection, getDoc, doc, getFirestore } from 'firebase/firestore'
-import { Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
 
 const prodctsIdBD = async (ids) => {
 
@@ -12,44 +10,30 @@ const prodctsIdBD = async (ids) => {
   const pRef = ids.map((id)=> doc(collection(dbF,"productos"), id));
   const pSnapshots = await Promise.all(
   pRef.map((e)=> getDoc(e)));
-  console.log(pSnapshots)
 
   const matchProd = pSnapshots.map((e)=>{
     if(e.exists()){
       return {id: e.id, ...e.data()};
-    }else{
-      return null;
-    }
+    }else{ return null;}
   })
-  //console.log(matchProd)
-  return matchProd.filter((e) => e !== null);
 
+  return matchProd.filter((e) => e !== null);
 }
 
 export const Cart = () => {
-  
-  
 
   const {productCount} = useContext(CartContext);
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState("true")
-  const navigate = useNavigate();
 
   useEffect(()=>{
     const ids = productCount.productos.map((e)=>e.productoId);
     prodctsIdBD(ids)
-    .then((res)=> 
-    {
-      setProductData(res)  //Puede estar aca el problema
-    })
+    .then((res)=> setProductData(res))
     .catch((err)=> console.log(err))
-    .then(()=> {
-      setLoading(false)
-      console.log("hola")
-      console.log(productCount)
-    });
+    .then(()=> setLoading(false)
+  );
   },[productCount.productos])
-  
   
   const qtyByProductoId = ((productoId)=>{
     const producto = productCount.productos.find(
@@ -60,26 +44,27 @@ export const Cart = () => {
     const total = productData
     .map((e)=> e.precio * qtyByProductoId(prodctsIdBD))
     .reduce((acc, currentValue)=> acc + currentValue, 0);
- 
+    
     console.log(total)
-
-  function handleEventCheck() {
-     // navigate = useNavigate("/checkout", {state: total})
-      console.log("Click Checkout")
-  }
+    console.log(productCount)
+    console.log(productData)
  
-  return (
+  return loading? <Loader/> : (
     <div className='contCart'>
+        <div>
+          <h3>Contenido del Cart:</h3>
+        </div>
         <div className='Cart'>
-          <h1>Aqui el map de prodcutos Cart</h1>
-          {/* {
-            productData.map((cartProducto)=>{
-              <CartDetalles cartProducto={{cartProducto}}/>
-            })
-          } */}
+          {
+          productData.map((producto) =>
+            <CartDetalles key={producto.id} 
+              cartProducto={producto}
+              qty={productCount.qty} />
+          )
+        }
         </div>
         <div>
-          <Button onClick={handleEventCheck}>Checkout</Button>
+          <Checkout/>
         </div>
     </div>
   )

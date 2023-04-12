@@ -16,8 +16,7 @@ export const MainRoutes = () => {
             <Route exact path='/productos' element={<Productos/>}/>           
             <Route exact path='/producto/:productoId' element={<ProductoDetalle/>}/>           
             <Route exact path='/categoria/:categoriaId' element={<Categorias/>}/>                    
-            <Route exact path='/cart' element={<Cart/>}/>                     
-            <Route exact path='/checkout' element={<Checkout/>}/>                     
+            <Route exact path='/cart' element={<Cart/>}/>                                       
         </Routes>
         <Footer/>
     </BrowserRouter>

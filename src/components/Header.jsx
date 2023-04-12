@@ -5,12 +5,15 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Button, InputGroup } from 'react-bootstrap'
 import { ThemeContext } from '../context/ThemeContext'
 import {getStorage, ref, getDownloadURL} from "firebase/storage"
+import { CartContext } from '../context/CartContext'
 
 const Count = () =>{
-  
+
+  const{productCount} = useContext(CartContext)
+
   return(
     <>
-      <InputGroup aria-readonly>0</InputGroup>
+      <InputGroup aria-readonly>{productCount.qty}</InputGroup>
     </>
   )
 }

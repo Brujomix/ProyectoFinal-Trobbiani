@@ -1,10 +1,12 @@
 .contCart{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     .Cart{
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 20px;
         padding: 30px;
     }
 }

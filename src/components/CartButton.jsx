@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, ButtonGroup } from 'react-bootstrap'
 import { CartContext } from '../context/CartContext';
 import { useParams } from 'react-router-dom';
@@ -15,10 +15,8 @@ export const CartButton = () => {
     function handleEventAgregar() {
         const existingProducto = productCount.productos.find((e) => e.productoId === productoId);
         if (existingProducto) {
-            console.log(existingProducto)
             existingProducto.qty += count;
         } else {
-            console.log("Agregarndo producto")
             const newProduct = {
                 productoId,
                 qty: count
@@ -29,7 +27,6 @@ export const CartButton = () => {
             }))
         }
     }
-
     return (
         <div className='contCartButton'>
             <div className='CartButton'>
