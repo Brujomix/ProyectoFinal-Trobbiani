@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { Modal, Button, Form, ModalTitle } from 'react-bootstrap'
+import { Modal, Button, Form, ModalTitle, FormText } from 'react-bootstrap'
 import { CartContext } from '../context/CartContext';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Timestamp, addDoc, collection, getFirestore } from 'firebase/firestore';
 
 export const Checkout = () => {
@@ -10,36 +10,40 @@ export const Checkout = () => {
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const {productoCount} = useContext(CartContext);
-  
+  const { productCount } = useContext(CartContext);
+  const navigate = useNavigate();
+
   const location = useLocation();
   const total = location.state;
 
   function handleEventPagar(e) {
     e.preventDefault();
     console.log(e)
-    /* const nombre = e.target.formNombre.value;
-    const cartNumber = e.taget.formCartNumber.value;
-    const fechaExpiracion = e.target.formFecha.value;
-    const cvc = e.target.formCvc.value;
-    console.log(nombre, cartNumber, fechaExpiracion, cvc)
-  
-  const newVenta = {
-    nombre: nombre,
-    cartNumber: cartNumber,
-    fechaExpiracion: fechaExpiracion,
-    cvc: cvc,
-    total: total,
-    products: productoCount,
-    fechaCompra: Timestamp.fromDate(new Date())
-  };
+
+    const newVenta = {
+      nombre: `${e.target.formNombre.value}`,
+      cartNumber: parseInt(e.target.formCartNumber.value),
+      fechaExpiracion: `${e.target.formFecha.value}`,
+      cvc: parseInt(e.target.formCvc.value),
+      total: total,
+      productos: productCount,
+      status: "Aprobada",
+      fechaCompra: Timestamp.fromDate(new Date())
+    };
+    console.log(newVenta)
+
+    const dbF = getFirestore();
+    const getVentas = collection(dbF, "ventas")
+    addDoc(getVentas, newVenta)
+      .then(({ id }) => {
+        console.log(id);
+      }).catch(() => {
+        console.log("no pudimos agregar la venta a base de datos")
+      })
+      .then(() => {
+        navigate("/");
+      })
     
-    const dbF = getFirestore()
-    const ventasCollection = collection(dbF, "ventas");
-    addDoc(ventasCollection, newVenta)
-    .then((res)=> console.log(res)
-    .catch((err)=> console.log(err))
-    ) */
   };
 
   return (
@@ -52,24 +56,25 @@ export const Checkout = () => {
           <ModalTitle className='text-center'>Ticket Checkout</ModalTitle>
           <Form className='p-3' onSubmit={handleEventPagar}>
 
-            <Form.Group className="mb-3" >
-              <Form.Control type="text" placeholder="Nombre" controlId="formNombre"/>
+            <Form.Group className="mb-3" controlId="formNombre" >
+              <Form.Control type="text" placeholder="Nombre Completo" required />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formCartNumber">
+              <Form.Control type="Number" pattern='[0-9]{16}' placeholder="Cart Number xxxx xxxx xxxx xxxx" required />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formFecha">
+              <Form.Control type="month" form placeholder="Fecha de Vencimiento" required />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formCvc">
+              <Form.Control type="Number" pattern='[0-9]{3}' placeholder="Enter CVC xxx" required />
             </Form.Group>
 
             <Form.Group className="mb-3" >
-              <Form.Control type="text" placeholder="Cart Number xxxxxxxxxxx" controlId="formCartNumber" />
-            </Form.Group>
-            
-            <Form.Group className="mb-3" >
-              <Form.Control type="text" placeholder="Fecha de Vencimiento" controlId="formFecha" />
-            </Form.Group>
-
-            <Form.Group className="mb-3" >
-              <Form.Control type="text" placeholder="Enter CVC xxx" controlId="formCvc"  />
-            </Form.Group>
-
-            <Form.Group className="mb-3" >
-              <Form.Control readOnly type="number" placeholder="Total" value={total} />
+              <FormText>Total a Pagar $</FormText>
+              <Form.Control readOnly type="Number" placeholder="Total" value={total} />
             </Form.Group>
 
             <Button variant="primary" type="submit">
@@ -78,7 +83,6 @@ export const Checkout = () => {
             <Button variant="secondary" onClick={handleClose}>
               Cancelar
             </Button>
-
           </Form>
         </Modal>
       </div>

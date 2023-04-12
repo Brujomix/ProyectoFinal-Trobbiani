@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartDetalles, Checkout } from "../components"
 import { CartContext } from '../context/CartContext'
-import {Loader} from "../pages"
+
 import { collection, getDoc, doc, getFirestore } from 'firebase/firestore'
+import { useLocation } from 'react-router-dom'
+import { Loader } from './Loader'
 
 const prodctsIdBD = async (ids) => {
 
@@ -24,7 +26,9 @@ export const Cart = () => {
 
   const {productCount} = useContext(CartContext);
   const [productData, setProductData] = useState([]);
-  const [loading, setLoading] = useState("true")
+  const [loading, setLoading] = useState(true)
+  let location = useLocation();
+  //console.log(location)
 
   useEffect(()=>{
     const ids = productCount.productos.map((e)=>e.productoId);
@@ -44,12 +48,13 @@ export const Cart = () => {
     const total = productData
     .map((e)=> e.precio * qtyByProductoId(e.id))
     .reduce((acc, currentValue)=> acc + currentValue, 0);
-    
-    console.log(total)
+  
     console.log(productCount)
     console.log(productData)
+
+    location.state = total
  
-  return loading? <Loader/> : (
+  return loading ? <Loader/> : (
     <div className='contCart'>
         <div className='Cart'>
           {productData.map((producto) => (
