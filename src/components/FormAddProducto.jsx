@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL, uploadBytes, getMetadata } from "firebase/storage";
-//import { v4 } from "uuid"
+import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
 export const FormAddProducto = () => {
 

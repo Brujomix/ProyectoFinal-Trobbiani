@@ -6,7 +6,7 @@ export const CartDetalles = ({ cartProducto, qty}) => {
     return (
         <div className='contCartDetalles'>
             <div className='CartDetalles'>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '12rem' }}>
                     <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
                     <Card.Body>
                         <Card.Title>{cartProducto.nombre}</Card.Title>

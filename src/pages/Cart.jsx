@@ -51,19 +51,17 @@ export const Cart = () => {
  
   return loading? <Loader/> : (
     <div className='contCart'>
-        <div>
-          <h3>Contenido del Cart:</h3>
-        </div>
         <div className='Cart'>
-          {
-          productData.map((producto) =>
-            <CartDetalles key={producto.id} 
+          {productData.map((producto) => (
+            <CartDetalles 
+              key={producto.id} 
               cartProducto={producto}
-              qty={productCount.qty} />
-          )
+              qty={productCount.productos.find((e)=>e.productoId === producto.id)} 
+            />
+          ))
         }
         </div>
-        <div>
+        <div className='CheckoutButton'>
           <Checkout/>
         </div>
     </div>
