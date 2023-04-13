@@ -42,7 +42,6 @@ export const FormAddProducto = () => {
 
   const [nameImg, setNameImg] = useState("imagen")
   const [imgPath, setImgPath] = useState("extrasImg/imgDefaultProducto.png")
-  const [preview, setPreview] = useState("Preview")
 
   function handleEventUpload() {
     console.log(nameImg)
@@ -55,13 +54,7 @@ export const FormAddProducto = () => {
       .catch((err) => {
         console.log(err);
       })
-      .then( async () => {     
-       /*  const dbS = getStorage();
-        await getDownloadURL(ref(dbS, imgPath))
-          .then((res) => {
-            setPreview(res);
-          }) */
-      })
+      
   }
 
 
@@ -86,12 +79,6 @@ export const FormAddProducto = () => {
                       setNameImg(e.target.files[0].name)
                     }}
                   />
-                  <div>
-                    <img
-                      src={preview}
-                      alt="Preview"
-                    />
-                  </div>
                 </div>
 
                 <Button onClick={handleEventUpload}>Upload</Button>
