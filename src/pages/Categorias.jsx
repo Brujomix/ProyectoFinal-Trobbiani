@@ -38,7 +38,7 @@ export const Categorias = () => {
         <div className='Categorias'>
           {
           data.map((producto) =>
-            <CardProducto key={producto.id} producto={producto} />
+            <CardProducto key={producto.id} producto={producto} imgPath={producto.imagen} />
           )
         }
         </div>

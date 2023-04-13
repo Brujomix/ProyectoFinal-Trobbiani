@@ -3,13 +3,12 @@ import { Card, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { getStorage, ref ,getDownloadURL } from 'firebase/storage'
 
-export const CardProducto = ({ producto }) => {
+export const CardProducto = ({ producto, imgPath }) => {
 
-    const [img, setImg] = useState("imagen Producto")
-
+    const [img, setImg] = useState("")
     useEffect(() => {
         const dbS = getStorage();
-        getDownloadURL(ref(dbS, `extrasImgs/imgDefaultProducto.png`))
+        getDownloadURL(ref(dbS, `${imgPath}`))
             .then((res) => {
                 setImg(res);
             })

@@ -32,7 +32,7 @@ export const ProductoDetalle = () => {
     return loading? <Loader/> : (
         <div className='contProductoDetalle'>
             <div className='ProductoDetalle'>
-                <CardProducto key={data.id} producto={data}/> 
+                <CardProducto key={data.id} producto={data} imgPath={data.imagen}/> 
                 <CartButton/>                        
             </div>
         </div>

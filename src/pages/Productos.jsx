@@ -32,8 +32,8 @@ export const Productos = () => {
         <CrudProducto/>
       <div className='Productos'>
         {
-          data.map((producto) =>
-            <CardProducto key={producto.id} producto={producto} />
+          data.map((e) =>
+            <CardProducto key={e.id} producto={e} imgPath={e.imagen} />
           )
         }
       </div>

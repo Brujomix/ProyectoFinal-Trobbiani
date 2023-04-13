@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
+import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '../pages/Loader';
 
 export const FormAddProducto = () => {
 
   const [show, setShow] = useState(false);
-
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -17,7 +19,7 @@ export const FormAddProducto = () => {
     const newProducto = {
       categoria: `${e.target.formBasicCategoria.value}`,
       descripcion: `${e.target.formBasicDescripcion.value}`,
-      imagen: `${urlImg}`,
+      imagen: `${imgPath}`,
       nombre: `${e.target.formBasicNombre.value}`,
       precio: parseInt(e.target.formBasicPrecio.value),
       stock: parseInt(e.target.formBasicStock.value)
@@ -34,20 +36,34 @@ export const FormAddProducto = () => {
       })
       .then(() => {
         setShow(false);
+        navigate("/productos");
       })
   }
 
-  const [pathImg, setPathImg] = useState("imagen")
-  const [urlImg, setUrlImg] = useState("Imagen Producto")
+  const [nameImg, setNameImg] = useState("imagen")
+  const [imgPath, setImgPath] = useState("extrasImg/imgDefaultProducto.png")
+  const [preview, setPreview] = useState("Preview")
 
-  function handleEventGetUrl() {
+  function handleEventUpload() {
+    console.log(nameImg)
     const dbS = getStorage();
-    getDownloadURL(ref(dbS, `${pathImg}`))
+    const refImg = ref(dbS, `/productosImgs/${nameImg}`)
+    uploadBytes(refImg, nameImg)
       .then((res) => {
-        setUrlImg(res);
-        console.log(res);
-      }).catch((err) => console.log(err));
+        setImgPath(res.metadata.fullPath)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then( async () => {     
+       /*  const dbS = getStorage();
+        await getDownloadURL(ref(dbS, imgPath))
+          .then((res) => {
+            setPreview(res);
+          }) */
+      })
   }
+
 
   return (
     <>
@@ -67,30 +83,18 @@ export const FormAddProducto = () => {
                 <div>
                   <input required type='file'
                     onChange={(e) => {
-                      console.log(e)
-                      const name = (e.target.files[0].name)
-
-                      const dbS = getStorage();
-                      const uplaoadImg = ref(dbS, `/productosImgs/${name}`)
-                      uploadBytes(uplaoadImg, name)
-                        .then((res) => {
-                          console.log(res)
-                          setPathImg(res.metadata.fullPath);
-                          console.log(res)
-                        })
-                        .catch((err) => {
-                          console.log(err);
-                        })
+                      setNameImg(e.target.files[0].name)
                     }}
                   />
+                  <div>
+                    <img
+                      src={preview}
+                      alt="Preview"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <img
-                    src={urlImg}
-                    alt='Vista Previa Imagen'
-                  />
-                </div>
-                <Button onClick={handleEventGetUrl}>Upload</Button>
+
+                <Button onClick={handleEventUpload}>Upload</Button>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicNombre">
@@ -130,9 +134,8 @@ export const FormAddProducto = () => {
           <b>Instrucciones:</b>
           <ul>
             <li>Todos los campos son requeridos</li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Las imagenes deben tener un tamaño de no mas de 100kb</li>
+            <li>El nombre de la imagen no debe contener espacios, simbolos ni numeros</li>
           </ul>
         </div>
       </Modal>
