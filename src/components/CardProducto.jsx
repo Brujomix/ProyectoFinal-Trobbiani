@@ -17,13 +17,11 @@ export const CardProducto = ({ producto, imgPath }) => {
     return (
         <div className='contCardProducto'>
             <div className='CardProducto'>
-                <Card style={{ width: '13rem' }}>
+                <Card className='Card'>
                     <Card.Body>
                         <Card.Img className="imgCardProducto" variant="top" src={img} />
                         <Card.Title>{producto.nombre}</Card.Title>
-                        <Card.Text>
-                            {producto.descripcion}
-                        </Card.Text>
+                        <Card.Text>{producto.descripcion}</Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Categoria: {producto.categoria}</ListGroup.Item>

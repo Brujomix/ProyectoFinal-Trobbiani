@@ -1,12 +1,15 @@
 .contProductoDetalle{
     display: flex;
     justify-content: center;
-    padding: 20px;
+    align-items: center;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 10px;
     .ProductoDetalle{
         display: flex;
-
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;   
+        align-items: center;
+        flex-wrap: wrap; 
+        gap: 20px;
     }
 }

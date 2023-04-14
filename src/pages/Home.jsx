@@ -4,8 +4,9 @@ export const Home = () => {
 
   return (
     <div className='contHome'>
-      <div>
-        Bienvenidos al Final React !
+      <div className='Home'>
+        <h1>Bienvenidos al Final React !</h1>
+        <h2>Trobbiani Bruno</h2>
       </div>
     </div>
   )

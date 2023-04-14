@@ -1,9 +1,11 @@
 .contCart{
     display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
     justify-content: center;
     align-items: center;
+    margin: 20px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 10px;
     .Cart{
         display: flex;
         flex-wrap: wrap;

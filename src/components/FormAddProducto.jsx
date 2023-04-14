@@ -73,7 +73,7 @@ export const FormAddProducto = () => {
               <Form.Group className="mb-3" controlId="formBasicImagen">
                 <Form.Label className='uploadImagen'>Upload Imagen</Form.Label>
                 <div className='mb-1'>
-                  <input type='file'
+                  <input required type='file'
                     onChange={(e) => {
                       setNameImg(e.target.files[0].name)
                     }}

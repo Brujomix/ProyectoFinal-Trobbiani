@@ -1,13 +1,17 @@
 .contCartDetalles{
-    padding: 20px;
     
     .CartDetalles{
-        padding: 10px;
-
-        .imgCartDetalle{
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
+        color: black;
+        text-align: center;
+        border: 2px solid grey;
+        border-radius: 5px;
+        .Cart{
+            background-color: rgba(221, 221, 221, 0.292);
+            .imgCartDetalle{
+                width: 100px;
+                height: 100px;
+                object-fit: contain;
+            }
         }
     }
 }
