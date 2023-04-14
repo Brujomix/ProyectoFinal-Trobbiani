@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, FormText } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
-import { Loader } from '../pages/Loader';
 
 export const FormAddProducto = () => {
 
@@ -36,20 +35,20 @@ export const FormAddProducto = () => {
       })
       .then(() => {
         setShow(false);
-        navigate("/productos");
+        navigate("/");
       })
   }
 
-  const [nameImg, setNameImg] = useState("imagen")
-  const [imgPath, setImgPath] = useState("extrasImg/imgDefaultProducto.png")
+  const [nameImg, setNameImg] = useState("imgDefaultProducto.png")
+  const [imgPath, setImgPath] = useState("")
 
   function handleEventUpload() {
     console.log(nameImg)
     const dbS = getStorage();
     const refImg = ref(dbS, `/productosImgs/${nameImg}`)
     uploadBytes(refImg, nameImg)
-      .then((res) => {
-        setImgPath(res.metadata.fullPath)
+      .then( (res) => {
+        setImgPath(res.metadata.fullPath);
       })
       .catch((err) => {
         console.log(err);
@@ -73,15 +72,17 @@ export const FormAddProducto = () => {
             <Form onSubmit={handleEventSubmit}>
               <Form.Group className="mb-3" controlId="formBasicImagen">
                 <Form.Label className='uploadImagen'>Upload Imagen</Form.Label>
-                <div>
-                  <input required type='file'
+                <div className='mb-1'>
+                  <input type='file'
                     onChange={(e) => {
                       setNameImg(e.target.files[0].name)
                     }}
                   />
                 </div>
-
                 <Button onClick={handleEventUpload}>Upload</Button>
+                <div>
+                <FormText>(si no tiene imagen del prodcuto haz click en "Upload para cargar una por defecto")</FormText>
+                </div>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicNombre">

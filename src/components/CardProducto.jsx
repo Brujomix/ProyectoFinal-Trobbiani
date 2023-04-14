@@ -1,25 +1,25 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { getStorage, ref ,getDownloadURL } from 'firebase/storage'
+import { getStorage, ref, getDownloadURL } from 'firebase/storage'
 
 export const CardProducto = ({ producto, imgPath }) => {
 
     const [img, setImg] = useState("")
     useEffect(() => {
         const dbS = getStorage();
-        getDownloadURL(ref(dbS, `${imgPath}`))
+        getDownloadURL(ref(dbS, imgPath))
             .then((res) => {
                 setImg(res);
             })
-    }, []);
+    }, [imgPath]);
 
     return (
         <div className='contCardProducto'>
-            <div>
-                <Card style={{ width: '16rem' }}>
-                    <Card.Img className='w-50 p-2' variant="top" src={img}/>
+            <div className='CardProducto'>
+                <Card style={{ width: '13rem' }}>
                     <Card.Body>
+                        <Card.Img className="imgCardProducto" variant="top" src={img} />
                         <Card.Title>{producto.nombre}</Card.Title>
                         <Card.Text>
                             {producto.descripcion}

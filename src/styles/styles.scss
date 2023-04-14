@@ -6,7 +6,7 @@
 /* Styles Boostrap */
 @import "~bootstrap/scss/bootstrap";
 /* Sweet Alert Css */
-//@import "sweetalert/dist/sweetalert.css";
+@import 'sweetalert2/src/sweetalert2.scss';
 
 /* Components Styles */
 @import "../styles/_components/Header";
@@ -15,6 +15,8 @@
 @import "../styles/_components/CartButton";
 @import "../styles/_components/CrudProductos";
 @import "../styles/_components/Checkout";
+@import "../styles/_components/CardProducto";
+@import "../styles/_components/CartDetalles";
 
 /* Pages Styleds */
 @import "../styles/_pages/MainLayout";

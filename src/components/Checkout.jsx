@@ -3,6 +3,7 @@ import { Modal, Button, Form, ModalTitle, FormText } from 'react-bootstrap'
 import { CartContext } from '../context/CartContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Timestamp, addDoc, collection, getFirestore } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 export const Checkout = () => {
 
@@ -30,6 +31,7 @@ export const Checkout = () => {
       status: "Aprobada",
       fechaCompra: Timestamp.fromDate(new Date())
     };
+    
     console.log(newVenta)
 
     const dbF = getFirestore();
@@ -41,9 +43,31 @@ export const Checkout = () => {
         console.log("no pudimos agregar la venta a base de datos")
       })
       .then(() => {
-        navigate("/");
+        let timerInterval
+        Swal.fire({
+          title: 'Procesando Compra',
+          html: "<b>Procesando</b>",
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft()
+            }, 1500)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            Swal.fire({
+              icon: "success"
+            })
+            navigate("/");
+          }
+        })
       })
-    
   };
 
   return (
@@ -53,8 +77,8 @@ export const Checkout = () => {
           Checkout
         </Button>
         <Modal show={show} onHide={handleClose}>
-          <ModalTitle className='text-center'>Ticket Checkout</ModalTitle>
           <Form className='p-3' onSubmit={handleEventPagar}>
+            <ModalTitle className='text-center'>Ticket Checkout</ModalTitle>
 
             <Form.Group className="mb-3" controlId="formNombre" >
               <Form.Control type="text" placeholder="Nombre Completo" required />
