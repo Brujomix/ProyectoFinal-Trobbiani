@@ -31,7 +31,7 @@ export const Checkout = () => {
       status: "Aprobada",
       fechaCompra: Timestamp.fromDate(new Date())
     };
-    
+
     console.log(newVenta)
 
     const dbF = getFirestore();
@@ -43,30 +43,23 @@ export const Checkout = () => {
         console.log("no pudimos agregar la venta a base de datos")
       })
       .then(() => {
-        let timerInterval
-        Swal.fire({
-          title: 'Procesando Compra',
-          html: "<b>Procesando</b>",
-          timer: 1000,
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-center',
+          showConfirmButton: false,
+          timer: 3000,
           timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading()
-            const b = Swal.getHtmlContainer().querySelector('b')
-            timerInterval = setInterval(() => {
-              b.textContent = Swal.getTimerLeft()
-            }, 1500)
-          },
-          willClose: () => {
-            clearInterval(timerInterval)
-          }
-        }).then((result) => {
-          if (result.dismiss === Swal.DismissReason.timer) {
-            Swal.fire({
-              icon: "success"
-            })
-            navigate("/");
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
         })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Procesando'
+        })
+        navigate("/")
       })
   };
 

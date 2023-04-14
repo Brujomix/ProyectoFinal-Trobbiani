@@ -1,10 +1,9 @@
 .contCart{
-    display: grid;
-    grid-template-columns: 1fr .5fr;
-    grid-template-rows: auto;
-
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     .Cart{
         display: flex;
         flex-wrap: wrap;
