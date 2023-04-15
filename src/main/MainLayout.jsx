@@ -11,7 +11,7 @@ export const MainLayout = ({children}) => {
   useEffect( _ =>{
     setTimeout(() => {
       setLoading(false)
-    }, 1000);
+    }, 1500);
   },[]);
 
   return loading? <Loader/> : (

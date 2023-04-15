@@ -63,7 +63,6 @@ export const Cart = _ => {
     .reduce((acc, currentValue) => acc + currentValue, 0);
 
   console.log(productCount)
-  console.log(productData)
 
   /* Extrae en el location el total para usarlo posteriormente en Checkout */
   location.state = total

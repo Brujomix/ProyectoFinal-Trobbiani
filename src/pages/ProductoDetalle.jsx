@@ -22,7 +22,7 @@ export const ProductoDetalle = _ => {
         })
         .catch((err)=>  console.log(err))
         .then(_=> setLoading(false))
-    },[]);
+    },[productoId]);
 
     return loading? <Loader/> : (
         <div className='contProductoDetalle'>

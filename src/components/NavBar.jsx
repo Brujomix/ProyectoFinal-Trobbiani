@@ -8,9 +8,9 @@ export const NavBar = _ => {
   const navigate = useNavigate();
   const handleEventProductos = _ => navigate("/productos");
   const handleEventCatIndumentaria = _ => navigate("/categoria/indumentaria");
-  const handleEventCatJoyas = _ => navigate("/productos");
-  const handleEventCatComputacion = _ => navigate("/productos");
-  
+  const handleEventCatJoyas = _ => navigate("/categoria/joyas");
+  const handleEventCatComputacion = _ => navigate("/categoria/computacion");
+
 
   return (
     <div className='contNavBar'>
@@ -19,7 +19,6 @@ export const NavBar = _ => {
         <Button onClick={handleEventCatIndumentaria}>Indumentaria</Button>
         <Button onClick={handleEventCatJoyas}>Joyas</Button>
         <Button onClick={handleEventCatComputacion}>Computacion</Button>
-        <hr style={{width:"100vw", border: "3px solid #black"}}/>
       </div>
     </div>
   )

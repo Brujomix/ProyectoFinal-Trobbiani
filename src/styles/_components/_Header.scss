@@ -1,25 +1,30 @@
-.contHeader{
+.contHeader {
     display: flex;
+    flex-direction: column;
+    gap: 30px;
     padding: 10px;
-    .Header{
-        width: 100vw;
+    background-color: rgba(221, 221, 221, 0.292);
+
+    .Header {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        .contThemeCart{
+
+        .contThemeCart {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
-            .CartCount{
+
+            .CartCount {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-
             }
         }
-        img{
+
+        img {
             width: 80px;
             height: 80px;
             object-fit: contain;

@@ -6,11 +6,10 @@ import { Button, InputGroup } from 'react-bootstrap'
 import { ThemeContext } from '../context/ThemeContext'
 import { getStorage, ref, getDownloadURL } from "firebase/storage"
 import { CartContext } from '../context/CartContext'
+import { NavBar } from './NavBar'
 
 const Count = () => {
-
   const { productCount } = useContext(CartContext);
-
   return (
     <InputGroup aria-readonly>{productCount.qty}</InputGroup>
   )
@@ -52,8 +51,11 @@ export const Header = _ => {
               </Link>
             </div>
           </div>
-          <Button onClick={HandleEventTheme}>Theme</Button>
+          <Button style={{backgroundColor:"whitesmoke", color:"blue", fontSize:".8rem"}} onClick={HandleEventTheme}>Theme</Button>
         </div>
+      </div>
+      <div>
+        <NavBar/>
       </div>
     </div>
   )

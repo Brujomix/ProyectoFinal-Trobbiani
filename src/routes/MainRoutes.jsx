@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import {Footer, Header,NavBar} from "../components"
+import {Footer, Header} from "../components"
 import {Categorias, Home, Productos, Cart, ProductoDetalle, NotFound} from "../pages"
 
 export const MainRoutes = _ => {
@@ -8,7 +8,6 @@ export const MainRoutes = _ => {
   return (
     <BrowserRouter>
         <Header/>
-        <NavBar/>
         <Routes>           
             <Route exact path='/' element={<Home/>}/>           
             <Route exact path='/productos' element={<Productos/>}/>           
