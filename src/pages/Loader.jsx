@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
-export const Loader = () => {
+export const Loader = _ => {
   return (
     <div className='contLoader'>
       <div>

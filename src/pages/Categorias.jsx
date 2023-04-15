@@ -4,14 +4,14 @@ import { CardProducto } from '../components/CardProducto';
 import {getFirestore, collection, getDocs, query, where} from "firebase/firestore"
 import {Loader} from "../pages"
 
-export const Categorias = () => {
+export const Categorias = _ => {
 
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([]);
   const {categoriaId} = useParams();
 
-  useEffect(()=>{
-
+  /* Filtrado de Categorias en collection productos */
+  useEffect( _=>{
     const dbF = getFirestore();
     const productosFiltCat = query(
       collection(dbF, "productos"),
@@ -24,12 +24,9 @@ export const Categorias = () => {
       }
       setData(res.docs.map((doc)=>({id: doc.id, ...doc.data()})));
     })
-    .catch((err)=>{
-      console.log(err)
-    })
-    .then(()=>{
-      setLoading(false);
-    })
+    .catch((err) => console.log(err)
+    )
+    .then( _=> setLoading(false))
     
   },[categoriaId]);
 

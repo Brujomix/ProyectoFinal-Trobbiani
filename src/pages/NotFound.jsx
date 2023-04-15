@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const NotFound = () => {
+export const NotFound = _ => {
   return (
     <div className='contNotFound'>
         <div className='NotFound'>

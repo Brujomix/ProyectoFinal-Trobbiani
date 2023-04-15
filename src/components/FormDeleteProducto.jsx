@@ -5,8 +5,8 @@ import { Modal } from 'react-bootstrap';
 export const FormDeleteProducto = () => {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = _ => setShow(false);
+    const handleShow = _ => setShow(true);
 
   function handleDeleteProducto() { 
     console.log("Producto Eliminado")

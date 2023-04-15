@@ -4,13 +4,14 @@ import { CartContext } from '../context/CartContext';
 import { useParams } from 'react-router-dom';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-export const CartButton = () => {
+export const CartButton = _ => {
   
   const [stock, setStock] = useState(0)
   const [count, setCount] = useState(1);
   const { productCount, setProductCount } = useContext(CartContext);
   const { productoId } = useParams();
  
+  /* Effect para que se desabiliten los botones dependiendo del stock producto */
   useEffect(()=>{
     const dbF = getFirestore();
         const docRef = doc(dbF, "productos", productoId);
@@ -26,10 +27,11 @@ export const CartButton = () => {
         })
   },[count])
   
+  /* Funciones de Incremento y Decremento del Contador Productos */
+  const increment = _ => setCount(count + 1);  
+  const decrement = _ => setCount(count - 1);
 
-  const increment = () => setCount(count + 1);  
-  const decrement = () => setCount(count - 1);
-
+  /* Agregar productos al Carrito y sumar el QTY general */
   function handleEventAgregar() {
     const existProducto = productCount.productos.find((e) => e.productoId === productoId);
     if (existProducto) {

@@ -5,18 +5,19 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Timestamp, addDoc, collection, getFirestore } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 
-export const Checkout = () => {
+export const Checkout = _ => {
 
   const [show, setShow] = useState(false);
 
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleShow = _ => setShow(true);
+  const handleClose = _ => setShow(false);
   const { productCount } = useContext(CartContext);
   const navigate = useNavigate();
 
   const location = useLocation();
   const total = location.state;
 
+  /* Funcion Pagar, paso final (toma datos del Formulario, valida la compra y carga una venta en Firestore) */
   function handleEventPagar(e) {
     e.preventDefault();
     console.log(e)
@@ -32,17 +33,12 @@ export const Checkout = () => {
       fechaCompra: Timestamp.fromDate(new Date())
     };
 
-    console.log(newVenta)
-
     const dbF = getFirestore();
     const getVentas = collection(dbF, "ventas")
     addDoc(getVentas, newVenta)
-      .then(({ id }) => {
-        console.log(id);
-      }).catch(() => {
-        console.log("no pudimos agregar la venta a base de datos")
-      })
-      .then(() => {
+      .then(({ id }) => console.log(id))
+      .catch( _ => console.log("no pudimos agregar la venta a base de datos"))
+      .then( _ => {
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-center',
@@ -53,8 +49,7 @@ export const Checkout = () => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
             toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
-        })
-        
+        })        
         Toast.fire({
           icon: 'success',
           title: 'Procesando'

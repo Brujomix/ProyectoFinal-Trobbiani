@@ -3,7 +3,7 @@ import { FormAddProducto } from './FormAddProducto'
 import { FormEditProducto } from './FormEditProducto'
 import { FormDeleteProducto } from './FormDeleteProducto'
 
-export const CrudProducto = () => {
+export const CrudProducto = _ => {
 
   return (
     <div className='contCrudProducto'>

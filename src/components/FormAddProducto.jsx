@@ -5,13 +5,14 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
 
-export const FormAddProducto = () => {
+export const FormAddProducto = _ => {
 
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = _ => setShow(false);
+  const handleShow = _ => setShow(true);
 
+  /* Submit Form add recolecta los datos del formulario, valida y envia el producto a Firebase */
   const handleEventSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,10 +31,8 @@ export const FormAddProducto = () => {
     addDoc(getProductos, newProducto)
       .then(({ id }) => {
         console.log(id);
-      }).catch(() => {
-        console.log("no pudimos agregar tu producto")
-      })
-      .then(() => {
+      }).catch( _ => console.log("Error"))
+      .then( _ => {
         setShow(false);
         navigate("/");
       })
@@ -50,12 +49,8 @@ export const FormAddProducto = () => {
       .then( (res) => {
         setImgPath(res.metadata.fullPath);
       })
-      .catch((err) => {
-        console.log(err);
-      })
-      
+      .catch((err) => console.log(err))    
   }
-
 
   return (
     <>

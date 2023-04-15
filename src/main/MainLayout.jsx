@@ -8,7 +8,7 @@ export const MainLayout = ({children}) => {
 
   const {isDarkMode} = useContext(ThemeContext);
   
-  useEffect(()=>{
+  useEffect( _ =>{
     setTimeout(() => {
       setLoading(false)
     }, 1000);

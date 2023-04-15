@@ -4,12 +4,12 @@ import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import {Loader} from "../pages"
 import { CrudProducto } from '../components'
 
-export const Productos = () => {
+export const Productos = _ => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  useEffect(_ => {
     const dbF = getFirestore();
     const getProductos = collection(dbF, "productos");
     getDocs(getProductos)
@@ -19,12 +19,8 @@ export const Productos = () => {
       }
       setData(res.docs.map((e)=>({id: e.id, ...e.data()})));
     })
-    .catch((err)=>{
-      console.log(err);
-    })
-    .then(()=>{
-      setLoading(false);
-    })
+    .catch((err)=> console.log(err))
+    .then(_=> setLoading(false))
   }, []);
 
   return loading? <Loader/> : (

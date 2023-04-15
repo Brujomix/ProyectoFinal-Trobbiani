@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Card, ListGroup } from 'react-bootstrap'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
 
-
 export const CartDetalles = ({ cartProducto, qty, imgPath }) => {
 
+    /* Props descarga la imagen por cada CartDetalle (productos en el carrito) */
     const [img, setImg] = useState("")
-    useEffect(() => {
+    useEffect( _ => {
         const dbS = getStorage();
         getDownloadURL(ref(dbS, imgPath))
             .then((res) => {

@@ -1,16 +1,26 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
-export const NavBar = () => {
+
+export const NavBar = _ => {
+
+  const navigate = useNavigate();
+  const handleEventProductos = _ => navigate("/productos");
+  const handleEventCatIndumentaria = _ => navigate("/categoria/indumentaria");
+  const handleEventCatJoyas = _ => navigate("/productos");
+  const handleEventCatComputacion = _ => navigate("/productos");
+  
+
   return (
     <div className='contNavBar'>
       <div className='NavBar'>
-        <Link to={"/productos"}>Todos Los Productos</Link>
-        <Link to={"/categoria/indumentaria"}>Categoria Indumentaria</Link>
-        <Link to={"/categoria/joyas"}>Categoria Joyas</Link>
-        <Link to={"/categoria/computacion"}>Categoria Computacion</Link>
+        <Button onClick={handleEventProductos}>Productos</Button>
+        <Button onClick={handleEventCatIndumentaria}>Indumentaria</Button>
+        <Button onClick={handleEventCatJoyas}>Joyas</Button>
+        <Button onClick={handleEventCatComputacion}>Computacion</Button>
+        <hr style={{width:"100vw", border: "3px solid #black"}}/>
       </div>
-      <hr />
     </div>
   )
 }

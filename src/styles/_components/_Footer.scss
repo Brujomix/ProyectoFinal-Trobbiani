@@ -1,10 +1,15 @@
 .contFooter{
     background-color: #000;
-    .Footer{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    gap: 30px;
+    .FooterInfo{
         display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        padding: 20px;
-    }
+        gap: 30px;
+        flex-wrap: wrap;
+    }    
 }

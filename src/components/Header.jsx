@@ -4,36 +4,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Button, InputGroup } from 'react-bootstrap'
 import { ThemeContext } from '../context/ThemeContext'
-import {getStorage, ref, getDownloadURL} from "firebase/storage"
+import { getStorage, ref, getDownloadURL } from "firebase/storage"
 import { CartContext } from '../context/CartContext'
 
-const Count = () =>{
+const Count = () => {
 
-  const{productCount} = useContext(CartContext);
+  const { productCount } = useContext(CartContext);
 
-  return(
-    <>
-     <InputGroup aria-readonly>{productCount.qty}</InputGroup>
-       
-    </>
+  return (
+    <InputGroup aria-readonly>{productCount.qty}</InputGroup>
   )
 }
 
-export const Header = () => {
-  const [img,setImg] = useState("imagen Logo")
+export const Header = _ => {
 
-  const {isDarkMode, setIsDarkMode} = useContext(ThemeContext);
+  const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
+  const [img, setImg] = useState("imagen Logo")
 
-  useEffect(()=>{
+  /* Descarga la imagen del Logo para el Header */
+  useEffect(_ => {
     const dbS = getStorage();
-    getDownloadURL(ref(dbS,"extrasImgs/DeWEB-logo-White.png"))
-    .then((res)=>{
-      setImg(res);
-      
-    })
-  },[]);
-  
-  function HandleEventTheme (){
+    getDownloadURL(ref(dbS, "extrasImgs/DeWEB-logo-White.png"))
+      .then((res) => setImg(res))
+  }, []);
+
+  /* Accion del boton que cambia de Theme */
+  function HandleEventTheme() {
     setIsDarkMode(!isDarkMode);
   }
 
@@ -41,14 +37,14 @@ export const Header = () => {
     <div className='contHeader'>
       <div className='Header'>
         <Link to={"/"}>
-          <img 
-          src={img} 
-          alt="Logo de la Empresa" />
+          <img
+            src={img}
+            alt="Logo de la Empresa" />
         </Link>
         <div className='contThemeCart'>
           <div className='CartCount'>
             <div>
-              <Count/>
+              <Count />
             </div>
             <div>
               <Link to={"/cart"}>

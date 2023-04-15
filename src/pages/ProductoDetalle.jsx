@@ -4,14 +4,13 @@ import {CardProducto, CartButton} from "../components"
 import {getFirestore, doc, getDoc} from "firebase/firestore"
 import { Loader } from './Loader'
 
-
-export const ProductoDetalle = () => {
+export const ProductoDetalle = _ => {
 
     const [loading,setLoading] = useState(true);
     const { productoId } = useParams();
     const [data, setData] = useState({});
 
-    useEffect(()=>{
+    useEffect(_=>{
         const dbF = getFirestore();
         const docRef = doc(dbF, "productos", productoId);
         getDoc(docRef)
@@ -21,12 +20,8 @@ export const ProductoDetalle = () => {
             }
          setData({id: res.id, ...res.data()});
         })
-        .catch((err)=>{
-            console.log(err);
-        })
-        .then(()=>{
-            setLoading(false);
-        })
+        .catch((err)=>  console.log(err))
+        .then(_=> setLoading(false))
     },[]);
 
     return loading? <Loader/> : (

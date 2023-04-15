@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Card, ListGroup } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
-import {FormEditProducto} from "./FormEditProducto"
 
 export const CardProducto = ({ producto, imgPath }) => {
 
+    /* Navegacion a Producto Detalle con Botones Carrito */
     const navigate = useNavigate();
-
     function handleEventDetalles() {
         navigate(`/producto/${producto.id}`)
     }
 
+    /* Efect download img de cada CardProducto */
     const [img, setImg] = useState("")
     useEffect(() => {
         const dbS = getStorage();
