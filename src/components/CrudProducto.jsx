@@ -9,7 +9,7 @@ export const CrudProducto = _ => {
     <div className='contCrudProducto'>
       <div className='CrudProducto'>
         <FormAddProducto/>
-        <FormEditProducto/>
+        {/* <FormEditProducto/> */}
         <FormDeleteProducto/>
       </div>
     </div >

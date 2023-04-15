@@ -54,7 +54,7 @@ export const Checkout = _ => {
           icon: 'success',
           title: 'Procesando'
         })
-        navigate("/")
+        navigate("/productos")
       })
   };
 

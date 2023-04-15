@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Modal, Form, FormText } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
 
 export const FormAddProducto = _ => {
@@ -31,25 +31,38 @@ export const FormAddProducto = _ => {
     addDoc(getProductos, newProducto)
       .then(({ id }) => {
         console.log(id);
-      }).catch( _ => console.log("Error"))
-      .then( _ => {
+      }).catch(_ => console.log("Error"))
+      .then(_ => {
         setShow(false);
         navigate("/");
       })
   }
 
-  const [nameImg, setNameImg] = useState("imgDefaultProducto.png")
+  const [file, setFile] = useState("")
   const [imgPath, setImgPath] = useState("")
+  const [preview, setPreview] = useState("")
 
   function handleEventUpload() {
-    console.log(nameImg)
-    const dbS = getStorage();
-    const refImg = ref(dbS, `/productosImgs/${nameImg}`)
-    uploadBytes(refImg, nameImg)
-      .then( (res) => {
-        setImgPath(res.metadata.fullPath);
-      })
-      .catch((err) => console.log(err))    
+    if (file) {
+      const dbS = getStorage();
+      const refImg = ref(dbS, `productosImgs/${file.name}`)
+      uploadBytes(refImg, file)
+        .then((res) => {
+          setImgPath(res.metadata.fullPath);
+          console.log(res.metadata.fullPath);
+        })
+        .catch((err) => console.log(err))
+        .then( async _=>{       
+            const refUrl = ref(dbS, `productosImgs/${file.name}`)
+            await getDownloadURL(refUrl)
+            .then((res)=>{
+              console.log(res)
+              setPreview(res)
+            })     
+        })
+    } else {
+      setImgPath("extrasImgs/imgDefaultProducto.png");
+    }
   }
 
   return (
@@ -70,13 +83,17 @@ export const FormAddProducto = _ => {
                 <div className='mb-1'>
                   <input required type='file'
                     onChange={(e) => {
-                      setNameImg(e.target.files[0].name)
+                      setFile(e.target.files[0])
+                      console.log(e.target.files[0])
                     }}
                   />
+                  <img className='w-25'
+                    src={preview}
+                    alt="Preview imagen" />
                 </div>
                 <Button onClick={handleEventUpload}>Upload</Button>
                 <div>
-                <FormText>(si no tiene imagen del prodcuto haz click en "Upload para cargar una por defecto")</FormText>
+                  <FormText>(si no tiene imagen del prodcuto haz click en "Upload para cargar una por defecto")</FormText>
                 </div>
               </Form.Group>
 

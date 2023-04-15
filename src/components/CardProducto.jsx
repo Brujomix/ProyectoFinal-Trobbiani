@@ -28,7 +28,7 @@ export const CardProducto = ({ producto, imgPath }) => {
                     <Card.Body>
                         <Card.Img className="imgCardProducto" variant="top" src={img} />
                         <Card.Title>{producto.nombre}</Card.Title>
-                        <Card.Text>{producto.descripcion}</Card.Text>
+                        <textarea className='areaCardProducto' readOnly defaultValue={producto.descripcion}/>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Categoria: {producto.categoria}</ListGroup.Item>
