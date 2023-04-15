@@ -17,7 +17,7 @@ export const Productos = () => {
       if(res.length === 0){
         console.log("No se encontraron productos")
       }
-      setData(res.docs.map((doc)=>({id: doc.id, ...doc.data()})));
+      setData(res.docs.map((e)=>({id: e.id, ...e.data()})));
     })
     .catch((err)=>{
       console.log(err);

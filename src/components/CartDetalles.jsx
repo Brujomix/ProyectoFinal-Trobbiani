@@ -26,8 +26,10 @@ export const CartDetalles = ({ cartProducto, qty, imgPath }) => {
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Stock: {cartProducto.stock}</ListGroup.Item>
                         <ListGroup.Item>$ {cartProducto.precio}</ListGroup.Item>
-                        <ListGroup.Item>Cantidad: {qty.qty}</ListGroup.Item>
                     </ListGroup>
+                    <Card.Body>
+                        <ListGroup.Item>Cantidad: {qty.qty}</ListGroup.Item>
+                    </Card.Body>
                 </Card>
             </div>
         </div>

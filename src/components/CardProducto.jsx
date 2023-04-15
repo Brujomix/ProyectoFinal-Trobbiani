@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Card, ListGroup } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Button, Card, ListGroup } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
+import {FormEditProducto} from "./FormEditProducto"
 
 export const CardProducto = ({ producto, imgPath }) => {
+
+    const navigate = useNavigate();
+
+    function handleEventDetalles() {
+        navigate(`/producto/${producto.id}`)
+    }
 
     const [img, setImg] = useState("")
     useEffect(() => {
@@ -28,9 +35,9 @@ export const CardProducto = ({ producto, imgPath }) => {
                         <ListGroup.Item>$ {producto.precio}</ListGroup.Item>
                         <ListGroup.Item>Stock: {producto.stock}</ListGroup.Item>
                     </ListGroup>
-                    <Card.Body>
-                        <Link to={`/producto/${producto.id}`}>Ver Detalles</Link>
-                    </Card.Body>
+                    <Card.Footer className='CardFooter'>
+                        <Button onClick={handleEventDetalles}>Ver Detalles</Button>
+                    </Card.Footer>                
                 </Card>
             </div>
         </div>

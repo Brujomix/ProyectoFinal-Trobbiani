@@ -28,10 +28,10 @@ export const FormDeleteProducto = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Cerrar
+              Cancelar
             </Button>
             <Button variant="primary" onClick={handleDeleteProducto}>
-              Guardar Cambios
+              Eliminar
             </Button>
           </Modal.Footer>
         </Modal>

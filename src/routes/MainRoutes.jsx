@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import {Checkout, Footer, Header,NavBar} from "../components"
+import {Footer, Header,NavBar} from "../components"
 import {Categorias, Home, Productos, Cart, ProductoDetalle, NotFound} from "../pages"
 
 export const MainRoutes = () => {
