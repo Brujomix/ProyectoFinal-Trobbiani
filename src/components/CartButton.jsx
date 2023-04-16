@@ -25,7 +25,7 @@ export const CartButton = _ => {
          setStock(res.data().stock);
         })
         .catch((err)=> console.log(err));
-  },[count])
+  },[productoId])
   
   /* Funciones de Incremento y Decremento del Contador Productos */
   const increment = _ => setCount(count + 1);  
@@ -55,7 +55,7 @@ export const CartButton = _ => {
         <ButtonGroup>
           <Button disabled={count === stock} onClick={increment}>+</Button>
           <InputGroup className='countCart' aria-readonly >{count}</InputGroup>
-          <Button disabled={count == 1} onClick={decrement}>-</Button>
+          <Button disabled={count === 1} onClick={decrement}>-</Button>
         </ButtonGroup>
         <Button onClick={handleEventAgregar}>Agregar al Carrito</Button>
 
