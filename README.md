@@ -39,12 +39,12 @@ Proyecto construido con Create-React-App a modo de demostrar lo aprendido en el 
             [RemoveBG](https://www.remove.bg/es)
 
 ### Eliminar Productos:
-    ![Eliminar](./public/gifReadme/Eliminar%20Prodcuto.gif)
+![Eliminar](./public/gifReadme/Eliminar%20Prodcuto.gif)
 
 * Ten en cuenta que eliminar un producto es un paso que no se puede deshacer. Modifica directamente la base de datos dando de baja ese Producto
 
 ### Proceso de Compra de Prodcutos:
-    ![Comprar](./public/gifReadme/Compra%20Prodcutos.gif)
+![Comprar](./public/gifReadme/Compra%20Prodcutos.gif)
     
 ### Recomendaciones !
 * A modos demostrativos puedes usar este numero de tarjeta para comprobar el Checkout de la compra:
