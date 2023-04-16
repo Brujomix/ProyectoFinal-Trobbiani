@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
 import { CardProducto } from '../components/CardProducto';
-import {getFirestore, collection, getDoc, query, where} from "firebase/firestore";
+import {getFirestore, collection, getDocs, query, where} from "firebase/firestore";
 import {Loader} from "../pages";
 
 export const Categorias = _ => {
@@ -17,7 +17,7 @@ export const Categorias = _ => {
       collection(dbF, "productos"),
       where("categoria", "==", `${categoriaId}`)
     );
-    getDoc(productosFiltCat)
+    getDocs(productosFiltCat)
     .then((res)=>{
       if(res.length === 0){
         console.log("No se encontraron Productos con esa categoria");

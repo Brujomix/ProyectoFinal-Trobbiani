@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Card, ListGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
+import { DeleteProducto } from './DeleteProducto'
 
 export const CardProducto = ({ producto, imgPath }) => {
 
@@ -25,6 +26,9 @@ export const CardProducto = ({ producto, imgPath }) => {
         <div className='contCardProducto'>
             <div className='CardProducto'>
                 <Card className='Card'>
+                    <Card.Header className='CardHeaderProducto'>
+                        <DeleteProducto produtoId={producto.id} pathImg={`${imgPath}`}/>
+                    </Card.Header>
                     <Card.Body>
                         <Card.Img className="imgCardProducto" variant="top" src={img} />
                         <Card.Title>{producto.nombre}</Card.Title>
