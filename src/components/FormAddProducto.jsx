@@ -4,6 +4,7 @@ import { Modal, Form, FormText } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const FormAddProducto = _ => {
 
@@ -34,6 +35,10 @@ export const FormAddProducto = _ => {
       }).catch(_ => console.log("Error"))
       .then(_ => {
         setShow(false);
+        Swal.fire({
+          icon: 'success',
+          title:"Producto Agregado"
+        })
         navigate("/");
       })
   }

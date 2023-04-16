@@ -26,13 +26,13 @@ export const CardProducto = ({ producto, imgPath }) => {
         <div className='contCardProducto'>
             <div className='CardProducto'>
                 <Card className='Card'>
-                    <Card.Header className='CardHeaderProducto'>
-                        <DeleteProducto produtoId={producto.id} pathImg={`${imgPath}`}/>
+                    <Card.Header className='CardHeader'>
+                            <DeleteProducto produtoId={producto.id} pathImg={`${imgPath}`} />
                     </Card.Header>
                     <Card.Body>
                         <Card.Img className="imgCardProducto" variant="top" src={img} />
                         <Card.Title>{producto.nombre}</Card.Title>
-                        <textarea className='areaCardProducto' readOnly defaultValue={producto.descripcion}/>
+                        <textarea className='areaCardProducto' readOnly defaultValue={producto.descripcion} />
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Categoria: {producto.categoria}</ListGroup.Item>
@@ -41,7 +41,7 @@ export const CardProducto = ({ producto, imgPath }) => {
                     </ListGroup>
                     <Card.Footer className='CardFooter'>
                         <Button onClick={handleEventDetalles}>Ver Detalles</Button>
-                    </Card.Footer>                
+                    </Card.Footer>
                 </Card>
             </div>
         </div>

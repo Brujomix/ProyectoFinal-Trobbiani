@@ -10,6 +10,8 @@ export const CartButton = _ => {
   const [count, setCount] = useState(1);
   const { productCount, setProductCount } = useContext(CartContext);
   const { productoId } = useParams();
+
+  console.log(productCount)
  
   /* Effect para que se desabiliten los botones dependiendo del stock producto */
   useEffect(()=>{
@@ -22,9 +24,7 @@ export const CartButton = _ => {
             }
          setStock(res.data().stock);
         })
-        .catch((err)=>{
-            console.log(err);
-        })
+        .catch((err)=> console.log(err));
   },[count])
   
   /* Funciones de Incremento y Decremento del Contador Productos */

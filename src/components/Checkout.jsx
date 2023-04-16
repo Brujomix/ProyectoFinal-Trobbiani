@@ -20,7 +20,6 @@ export const Checkout = _ => {
   /* Funcion Pagar, paso final (toma datos del Formulario, valida la compra y carga una venta en Firestore) */
   function handleEventPagar(e) {
     e.preventDefault();
-    console.log(e)
 
     const newVenta = {
       nombre: `${e.target.formNombre.value}`,
@@ -36,12 +35,12 @@ export const Checkout = _ => {
     const dbF = getFirestore();
     const getVentas = collection(dbF, "ventas")
     addDoc(getVentas, newVenta)
-      .then(({ id }) => console.log(id))
+      .then(({ id }) => console.log(`Compra Exitosa ${id}`))      
       .catch( _ => console.log("no pudimos agregar la venta a base de datos"))
       .then( _ => {
         const Toast = Swal.mixin({
           toast: true,
-          position: 'top-center',
+          position: 'top-end',
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true,
@@ -54,7 +53,7 @@ export const Checkout = _ => {
           icon: 'success',
           title: 'Procesando'
         })
-        navigate("/productos")
+        navigate("/")
       })
   };
 
@@ -92,10 +91,10 @@ export const Checkout = _ => {
             <Button variant="primary" type="submit">
               Pagar
             </Button>
-            <Button variant="secondary" onClick={handleClose}>
+          </Form>
+            <Button variant="dark" onClick={handleClose}>
               Cancelar
             </Button>
-          </Form>
         </Modal>
       </div>
     </div>

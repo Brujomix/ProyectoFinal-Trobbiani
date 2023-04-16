@@ -12,6 +12,7 @@ export const DeleteProducto = ({ produtoId, pathImg }) => {
   function handleEventDelete() {
     console.log(produtoId, pathImg);
     Swal.fire({
+      icon: "question",
       title: 'Vas a Eliminar Este Producto',
       showDenyButton: true,
       showCancelButton: false,
@@ -29,7 +30,6 @@ export const DeleteProducto = ({ produtoId, pathImg }) => {
           .then((resElimImagen) => console.log(resElimImagen))
           .catch((err) => console.log(err));
       } else if (result.isDenied) {
-        Swal.fire('Cancelado', '', 'info')
         navigate("/productos")
       }else{
         console.log("operaciones abortadas")
@@ -40,8 +40,9 @@ export const DeleteProducto = ({ produtoId, pathImg }) => {
   }
 
   return (
-    <div className='contDeleteProducto'>
-      <Button className='danger' onClick={handleEventDelete}>Eliminar</Button>
+    <div>
+      <Button className='btn-danger btn-sm' 
+      onClick={handleEventDelete}>Eliminar</Button>
     </div>
   )
 }

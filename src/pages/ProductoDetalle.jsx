@@ -10,6 +10,8 @@ export const ProductoDetalle = _ => {
     const { productoId } = useParams();
     const [data, setData] = useState({});
 
+    console.log(productoId);
+
     useEffect(_=>{
         const dbF = getFirestore();
         const docRef = doc(dbF, "productos", productoId);
