@@ -31,11 +31,11 @@ Proyecto construido con Create-React-App a modo de demostrar lo aprendido en el 
 
 ### Recomendaciones !
 
-        * 1 - Las imagenes correspondientes a los productos deben tener un tamaño de 150px de ancho al menos. Pueder editar fotos gratuitamente desde este enlace:
+* 1 - Las imagenes correspondientes a los productos deben tener un tamaño de 150px de ancho al menos. Pueder editar fotos gratuitamente desde este enlace:
             [Photopea](https://www.photopea.com/)
-            ***Una vez cargado el archivo, en Archivo-Exportar Como - Png (especifica el ancho de la imagen en 150px.) Luego Guardar***
+***Una vez cargado el archivo, en Archivo-Exportar Como - Png (especifica el ancho de la imagen en 150px.) Luego Guardar***
             
-        * 2 - El formato de dicha imagen debe estar con fondo tensparente. Puedes quitar el fondo de una imagen completamente gratis desde esta web: 
+* 2 - El formato de dicha imagen debe estar con fondo tensparente. Puedes quitar el fondo de una imagen completamente gratis desde esta web: 
             [RemoveBG](https://www.remove.bg/es)
 
 ### Eliminar Productos:
