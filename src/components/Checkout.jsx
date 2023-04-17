@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Modal, Button, Form, ModalTitle, FormText } from 'react-bootstrap'
+import { Modal, Button, Form, ModalTitle, FormText, FormControl} from 'react-bootstrap'
 import { CartContext } from '../context/CartContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Timestamp, addDoc, collection, getFirestore } from 'firebase/firestore';
@@ -35,9 +35,9 @@ export const Checkout = _ => {
     const dbF = getFirestore();
     const getVentas = collection(dbF, "ventas")
     addDoc(getVentas, newVenta)
-      .then(({ id }) => console.log(`Compra Exitosa ${id}`))      
-      .catch( _ => console.log("no pudimos agregar la venta a base de datos"))
-      .then( _ => {
+      .then(({ id }) => console.log(`Compra Exitosa ${id}`))
+      .catch(_ => console.log("no pudimos agregar la venta a base de datos"))
+      .then(_ => {
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -48,7 +48,7 @@ export const Checkout = _ => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
             toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
-        })        
+        })
         Toast.fire({
           icon: 'success',
           title: 'Procesando'
@@ -68,11 +68,11 @@ export const Checkout = _ => {
             <ModalTitle className='text-center'>Ticket Checkout</ModalTitle>
 
             <Form.Group className="mb-3" controlId="formNombre" >
-              <Form.Control type="text" placeholder="Nombre Completo" required />
+              <FormControl type="text" placeholder="Nombre Completo" required />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formCartNumber">
-              <Form.Control type="Number" pattern='[0-9]{16}' placeholder="Cart Number xxxx xxxx xxxx xxxx" required />
+              <Form.Control type="Number" pattern='[0-9]{16}' placeholder="Cart Number xxxxxxxxxxxxxxxx" required />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formFecha">
@@ -92,9 +92,10 @@ export const Checkout = _ => {
               Pagar
             </Button>
           </Form>
-            <Button variant="dark" onClick={handleClose}>
-              Cancelar
-            </Button>
+
+          <Button variant="dark" onClick={handleClose}>
+            Cancelar
+          </Button>
         </Modal>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button, FormControl } from 'react-bootstrap';
 import { Modal, Form, FormText } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -103,7 +103,7 @@ export const FormAddProducto = _ => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicNombre">
-                <Form.Control required type="text" placeholder="Nombre" />
+                <Form.Control required type="text" placeholder="Nombre" />                
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicDescripcion">
