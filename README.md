@@ -5,8 +5,8 @@ Proyecto construido con Create-React-App a modo de demostrar lo aprendido en el 
 ## Instalacion:
 
 * 1 - Descarga el repositorio de github en tu ordenador (Branch Master !).
-* 2 - Inicia en la Consola de Comandos ***npm i*** para instalar las dependencias.
-* 3 - Al finalizar la instalacion de dependencias, inicia el comando ***npm start***.
+* 2 - Abre VSC e inicia en la Consola de Comandos ***npm i*** para instalar las dependencias.
+* 3 - Al finalizar la instalacion de dependencias, inicia el comando ***npm start*** en la misma consola.
 * 4 - Si todo esta correcto se abrirá un navegador con la direccion ***localhost:3000***.
 * 5 - Ya puedes usar la aplicacion.
 
