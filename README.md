@@ -27,7 +27,7 @@ Proyecto construido con Create-React-App a modo de demostrar lo aprendido en el 
 ### Pasos para agregar un producto:
 ![Agregar](./public/gifReadme/AgregarProducto.gif)
 
-* Ten en cuenta que dar de alta productos afecta directamente a la base de datos. También las consideraciones de tamaño de imagenes, (pie del formulario de "Agregar Producto"), al momento de subir la imagen identificativa del producto.
+* Ten en cuenta que dar de alta productos afecta directamente a la base de datos. También, revisa las indicaciones de tamaño de imagenes y las demas caracteristicas al momento de subir la imagen identificativa del producto.
 
 ### Recomendaciones !
 
@@ -57,7 +57,3 @@ Puedes editar fotos gratuitamente desde este enlace:
 
 ***No dejes datos sensibles en estos campos***
 ***Recurda que es unicamente con proposito de evaluacion***
-
-
-
-
